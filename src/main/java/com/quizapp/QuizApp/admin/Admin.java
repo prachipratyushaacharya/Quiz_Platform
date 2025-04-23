@@ -47,8 +47,9 @@ public class Admin {
                 System.out.println("Invalid choice.");
             }
 
-            dao.insertQuestion(new Question(qText, options, correct));
-            System.out.println("Question added!");
+            Question q = new Question(qText, options, correct);
+            repository.save(q);
+            System.out.println("✅ Question added!");
         }
     }
 }

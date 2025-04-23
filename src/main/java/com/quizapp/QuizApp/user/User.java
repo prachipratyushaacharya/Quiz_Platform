@@ -1,17 +1,24 @@
 package com.quizapp.QuizApp.user;
 
-import com.quizapp.QuizApp.dao.QuestionDAO;
+import com.quizapp.QuizApp.dao.QuestionRepository;
 import com.quizapp.QuizApp.dao.model.Question;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class User {
     private Scanner scanner = new Scanner(System.in);
-    private QuestionDAO dao = new QuestionDAO();
+    private QuestionRepository repository;
+
+    @Autowired
+    public User(QuestionRepository repository) {
+        this.repository = repository;
+    }
 
     public void takeQuiz() {
-        List<Question> questions = dao.getAllQuestions();
+        List<Question> questions = repository.findAll();
         int score = 0;
 
         for (Question q : questions) {
