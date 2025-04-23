@@ -1,14 +1,22 @@
 package com.quizapp.QuizApp.admin;
 
-import com.quizapp.QuizApp.dao.QuestionDAO;
+import com.quizapp.QuizApp.dao.QuestionRepository;
 import com.quizapp.QuizApp.dao.model.Question;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class Admin {
     private static final String ADMIN_PASSWORD = "admin123";
-    private Scanner scanner = new Scanner(System.in);
-    private QuestionDAO dao = new QuestionDAO();
+    private final Scanner scanner = new Scanner(System.in);
+    private final QuestionRepository repository;
+
+    @Autowired
+    public Admin(QuestionRepository repository) {
+        this.repository = repository;
+    }
 
     public boolean login() {
         System.out.print("Enter admin password: ");
