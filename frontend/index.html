@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizPlatform</title>
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background: #f0f4ff;">
+
+  <!-- Navbar -->
+  <div style="background: #4c51bf; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size: 1.5em; font-weight: bold;">SmartQuiz</div>
+    <div style="display: flex; gap: 25px;">
+      <a href="#" style="color: white; text-decoration: none;">Home</a>
+      <a href="#" style="color: white; text-decoration: none;">About</a>
+      <a href="#" style="color: white; text-decoration: none;">Dashboard</a>
+      <a href="#" style="color: white; text-decoration: none;">Sign Out</a>
+    </div>
+  </div>
+
+  <!-- Quiz Container -->
+  <div style="max-width: 700px; margin: 40px auto; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 30px;">
+    <!-- Question Header -->
+    <div style="border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px;">
+      <h2 style="margin: 0; color: #4c51bf;">QUIZ-PLATFORM</h2>
+      <p style="color: green; font-weight: bold; margin: 5px 0;">✔ Correct!</p>
+      <p style="font-size: 0.9em; color: #888;">Question 1 of 24</p>
+    </div>
+
+    <!-- Question -->
+    <p style="font-size: 1.1em; font-weight: 500;">Capital of France?</p>
+
+    <!-- Options -->
+    <div id="options" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+      <button onclick="checkAnswer(this, false)" style="padding: 12px; border-radius: 6px; border: 1px solid #ccc; background: #f9f9f9;">Berlin</button>
+      <button onclick="checkAnswer(this, true)" style="padding: 12px; border-radius: 6px; border: 1px solid #ccc; background: #f9f9f9;">Paris</button>
+      <button onclick="checkAnswer(this, false)" style="padding: 12px; border-radius: 6px; border: 1px solid #ccc; background: #f9f9f9;">Lyon</button>
+      <button onclick="checkAnswer(this, false)" style="padding: 12px; border-radius: 6px; border: 1px solid #ccc; background: #f9f9f9;">Belgium</button>
+    </div>
+
+    <!-- Explanation -->
+    <div id="explanation" style="margin-top: 20px; display: none; background: #e6fffa; padding: 15px; border-left: 5px solid #38b2ac; border-radius: 6px;">
+      <strong>Explanation:</strong> Capital of france is paris.
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div style="margin-top: 30px; display: flex; justify-content: space-between;">
+      <button style="padding: 10px 20px; border: 1px solid #ccc; border-radius: 6px; background: #f1f1f1;">Previous</button>
+      <button style="padding: 10px 20px; background: #4299e1; border: none; color: white; border-radius: 6px;">Next</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="text-align: center; margin-top: 40px; color: #666;">
+    created by java_group-02<a href="#" style="color: #4c51bf; text-decoration: none;"></a> •learn n know something
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function checkAnswer(button, isCorrect) {
+      const buttons = document.querySelectorAll("#options button");
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (isCorrect) {
+        button.style.backgroundColor = "#9ae6b4";
+        button.style.borderColor = "#38a169";
+      } else {
+        button.style.backgroundColor = "#feb2b2";
+        button.style.borderColor = "#e53e3e";
+      }
+
+      document.getElementById("explanation").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

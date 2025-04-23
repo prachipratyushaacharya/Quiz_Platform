@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | SmartQuiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background: #f0f4ff;">
+
+  <!-- Navbar -->
+  <div style="background: #4c51bf; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size: 1.5em; font-weight: bold;">SmartQuiz</div>
+    <div style="display: flex; gap: 25px;">
+      <a href="#" style="color: white; text-decoration: none;">Home</a>
+      <a href="#" style="color: white; text-decoration: none;">About</a>
+    </div>
+  </div>
+
+  <!-- Login Container -->
+  <div style="max-width: 400px; margin: 60px auto; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 30px; text-align: center;">
+    <h2 style="color: #4c51bf; margin-bottom: 25px;">Login to SmartQuiz</h2>
+
+    <form id="loginForm">
+      <input type="text" placeholder="Username" name="username" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px;"><br>
+      <input type="password" placeholder="Password" name="password" required style="width: 100%; padding: 10px; margin-bottom: 25px; border: 1px solid #ccc; border-radius: 6px;"><br>
+
+      <div style="display: flex; justify-content: center; gap: 15px;">
+        <button type="button" onclick="loginAs('user')" style="background: #4c51bf; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">User Login</button>
+        <button type="button" onclick="loginAs('admin')" style="background: #4c51bf; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">Admin Login</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer style="text-align: center; margin-top: 40px; color: #666;">
+    created by java_group-02 • learn n know something
+  </footer>
+
+  <!-- Script -->
+  <script>
+    function loginAs(role) {
+      const form = document.getElementById('loginForm');
+      const username = form.username.value.trim();
+      const password = form.password.value.trim();
+
+      if (!username || !password) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
+      if (role === 'admin') {
+        if (username === 'admin' && password === 'admin123') {
+          alert("Admin login successful!");
+          window.location.href = "admin-dashboard.html"; // Replace with actual admin dashboard
+        } else {
+          alert("Invalid admin credentials.");
+        }
+      } else {
+        // Simple user validation (customize as needed)
+        alert("User login successful!");
+        window.location.href = "index.html"; // Replace with actual user page
+      }
+    }
+  </script>
+
+</body>
+</html>
