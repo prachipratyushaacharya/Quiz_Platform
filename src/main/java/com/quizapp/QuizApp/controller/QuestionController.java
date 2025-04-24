@@ -38,7 +38,7 @@ public class QuestionController {
 
         for (int i = 0; i < questions.size(); i++) {
             if (i < answers.size()
-                    && questions.get(i).getCorrectAnswer().equalsIgnoreCase(answers.get(i).getAnswer())) {
+                    && questions.get(i).getCorrectOption().equalsIgnoreCase(answers.get(i).getAnswer())) {
                 score++;
             }
         }
