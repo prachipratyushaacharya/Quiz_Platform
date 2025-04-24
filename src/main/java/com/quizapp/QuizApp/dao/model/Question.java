@@ -19,12 +19,12 @@ public class Question {
     private String option3;
     private String option4;
 
-    private int correctOption;
+    private String correctOption;
 
     public Question() {
     }
 
-    public Question(String text, String[] options, int correctOption) {
+    public Question(String text, String[] options, String correctOption) {
         this.text = text;
         this.option1 = options[0];
         this.option2 = options[1];
@@ -56,11 +56,11 @@ public class Question {
         this.option4 = options[3];
     }
 
-    public int getCorrectOption() {
+    public String getCorrectOption() {
         return correctOption;
     }
 
-    public void setCorrectOption(int correctOption) {
+    public void setCorrectOption(String correctOption) {
         this.correctOption = correctOption;
     }
 
@@ -74,7 +74,7 @@ public class Question {
         System.out.println("4. " + option4);
     }
 
-    public boolean isCorrect(int userChoice) {
+    public boolean isCorrect(String userChoice) {
         return userChoice == correctOption;
     }
 }
