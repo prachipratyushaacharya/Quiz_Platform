@@ -47,7 +47,9 @@ public class Admin {
                 System.out.println("Invalid choice.");
             }
 
-            Question q = new Question(qText, options, correct);
+            String correct1 = Integer.toString(correct);
+
+            Question q = new Question(qText, options, correct1);
             repository.save(q);
             System.out.println("✅ Question added!");
         }
