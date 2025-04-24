@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz App</title>
+</head>
+<body>
+
+  <div id="quiz-container"></div>
+  <button onclick="submitAnswers()">Submit</button>
+  <h2 id="result"></h2>
+
+  <script>
+    let questions = [];
+
+    fetch("http://localhost:8080/api/questions/all")
+      .then(response => response.json())
+      .then(data => {
+        questions = data;
+        const container = document.getElementById("quiz-container");
+
+        data.forEach((q, index) => {
+          const qDiv = document.createElement("div");
+          qDiv.innerHTML = `
+            <h3>Q${index + 1}: ${q.questionTitle}</h3>
+            <label><input type="radio" name="q${index}" value="${q.option1}">${q.option1}</label><br>
+            <label><input type="radio" name="q${index}" value="${q.option2}">${q.option2}</label><br>
+            <label><input type="radio" name="q${index}" value="${q.option3}">${q.option3}</label><br>
+            <label><input type="radio" name="q${index}" value="${q.option4}">${q.option4}</label><br>
+            <hr>
+          `;
+          container.appendChild(qDiv);
+        });
+      });
+
+    function submitAnswers() {
+      const answers = questions.map((q, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        return {
+          id: q.id,
+          answer: selected ? selected.value : ""
+        };
+      });
+
+      fetch("http://localhost:8080/api/questions/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(answers)
+      })
+      .then(response => response.json())
+      .then(score => {
+        document.getElementById("result").innerText = `Your Score: ${score}/${questions.length}`;
+      })
+      .catch(error => console.error("Error submitting answers:", error));
+    }
+  </script>
+
+</body>
+</html>
