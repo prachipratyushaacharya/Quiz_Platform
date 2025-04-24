@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin | SmartQuiz</title>
 </head>
+
 <body style="margin: 0; font-family: 'Segoe UI', sans-serif; background: #f0f4ff;">
 
   <!-- Navbar -->
@@ -131,12 +132,41 @@
       if (questions.length === numQuestions) {
         alert('Questions saved successfully!');
         // Here, you can send the questions data to the backend for storage.
-        console.log(questions);
+        fetch('http://localhost:8080/api/questions/add', 
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(questions)
+        })
+        .then(response => {
+          if (response.ok) {
+            alert('Questions successfully saved to backend!');
+            closePopup();
+          } else {
+            alert('Error saving questions.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Network or server error.');
+        });
+
         closePopup(); // Close the popup after saving
       } else {
         alert('Please fill in all fields.');
       }
     }
+
+  window.onload = function() {
+  fetch('http://localhost:8080/api/questions/all')
+        .then(res => res.json())
+        .then(data => {
+          console.log(data); // Replace this with code to render questions dynamically
+        });
+    };
+
   </script>
 
 </body>
