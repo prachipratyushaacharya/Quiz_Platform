@@ -27,7 +27,9 @@ public class User {
             System.out.print("Your answer (1-4): ");
             int ans = scanner.nextInt();
 
-            if (q.isCorrect(ans)) {
+            String answeString = convertIntToAnswerString(ans);
+
+            if (q.isCorrect(answeString)) {
                 System.out.println("✅ Correct!");
                 score++;
             } else {
@@ -36,5 +38,20 @@ public class User {
         }
 
         System.out.println("\nQuiz Over. Your score: " + score + "/" + questions.size());
+    }
+
+    private String convertIntToAnswerString(int answerChoice) {
+        switch (answerChoice) {
+            case 1:
+                return "A";
+            case 2:
+                return "B";
+            case 3:
+                return "C";
+            case 4:
+                return "D";
+            default:
+                return ""; // or handle invalid input
+        }
     }
 }
